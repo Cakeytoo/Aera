@@ -1,3 +1,0 @@
-154-57-194-69.sslip.io {
-    reverse_proxy localhost:3000
-}
