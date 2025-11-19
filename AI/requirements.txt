@@ -1,0 +1,14 @@
+# Primary AI dependencies
+llama-cpp-python>=0.2.90
+numpy>=1.21.0
+requests>=2.25.0
+
+# Alternative installation options if the above fails:
+# For CPU-only installation (if you have CMake issues):
+# pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+
+# For CUDA support (if you have NVIDIA GPU):
+# CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python
+
+# For Metal support (if you have Apple Silicon Mac):
+# CMAKE_ARGS="-DLLAMA_METAL=on" pip install llama-cpp-python

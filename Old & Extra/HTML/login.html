@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Eisa's AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-glass {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.75);
+            border-radius: 12px;
+            border: 1px solid rgba(209, 213, 219, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md" data-aos="fade-up">
+        <div class="card-glass p-8 shadow-xl">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold gradient-text">Eisa's AI</h1>
+                <p class="text-gray-600 mt-2">Your intelligent assistant</p>
+            </div>
+
+            <form class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="mail" class="text-gray-400"></i>
+                        </div>
+                        <input type="email" id="email" name="email" required 
+                            class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                            placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="lock" class="text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" name="password" required 
+                            class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                            placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" 
+                            class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    <a href="#" class="text-sm text-purple-600 hover:text-purple-500">Forgot password?</a>
+                </div>
+
+                <button type="submit" 
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200">
+                    Sign in
+                </button>
+            </form>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-3 gap-3">
+                    <button type="button" 
+                        class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition">
+                        <i data-feather="github" class="h-5 w-5"></i>
+                    </button>
+                    <button type="button" 
+                        class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition">
+                        <i data-feather="google" class="h-5 w-5"></i>
+                    </button>
+                    <button type="button" 
+                        class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition">
+                        <i data-feather="microsoft" class="h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Don't have an account? 
+                    <a href="#" class="font-medium text-purple-600 hover:text-purple-500">Sign up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+        feather.replace();
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate login
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = 'Signing in...';
+            
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        });
+
+        // Social login buttons
+        document.querySelectorAll('[data-feather="github"], [data-feather="google"], [data-feather="microsoft"]').forEach(btn => {
+            btn.closest('button').addEventListener('click', (e) => {
+                const provider = e.currentTarget.querySelector('i').getAttribute('data-feather');
+                const btn = e.currentTarget;
+                btn.disabled = true;
+                btn.innerHTML = `<i data-feather="${provider}" class="w-5 h-5 animate-spin"></i>`;
+                feather.replace();
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            });
+        });
+
+        // Forgot password
+        document.querySelector('a[href="#"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Password reset link would be sent to your email in a real implementation');
+        });
+
+        // Sign up link
+        document.querySelector('a[href="#"]:last-child').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('This would redirect to a signup page in a real implementation');
+        });
+    </script>
+
+<script>
+    AOS.init();
+    feather.replace();
+
+    // LOGIN FORM SUBMIT
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.innerHTML = 'Signing in...';
+
+        try {
+            const res = await fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: email, password })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                alert("Login successful!");
+                localStorage.setItem("token", data.token); // save token
+                window.location.href = "index.html";
+            } else {
+                alert("Error: " + data.error);
+                btn.disabled = false;
+                btn.innerHTML = 'Sign in';
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Server error. Is backend running?");
+            btn.disabled = false;
+            btn.innerHTML = 'Sign in';
+        }
+    });
+
+    // Social login buttons (still fake for now)
+    document.querySelectorAll('[data-feather="github"], [data-feather="google"], [data-feather="microsoft"]').forEach(btn => {
+        btn.closest('button').addEventListener('click', (e) => {
+            const provider = e.currentTarget.querySelector('i').getAttribute('data-feather');
+            const btn = e.currentTarget;
+            btn.disabled = true;
+            btn.innerHTML = `<i data-feather="${provider}" class="w-5 h-5 animate-spin"></i>`;
+            feather.replace();
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        });
+    });
+
+    // Forgot password
+    document.querySelector('a[href="#"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Password reset link would be sent to your email in a real implementation');
+    });
+
+    // Sign up link
+    document.querySelector('a[href="#"]:last-child').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'signup.html'; // redirect to real signup page
+    });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
