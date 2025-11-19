@@ -1,30 +1,40 @@
 #!/bin/bash
 
-echo "Installing Python requirements for Aera AI..."
+echo "Installing Python dependencies for Aera AI..."
 echo
 
-# Function to check if command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# Try different Python commands
-if command_exists python3; then
-    echo "Using python3 command..."
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -r requirements.txt
-elif command_exists python; then
-    echo "Using python command..."
-    python -m pip install --upgrade pip
-    python -m pip install -r requirements.txt
-else
-    echo "ERROR: No Python installation found!"
-    echo "Please install Python from https://python.org"
-    echo "On Ubuntu/Debian: sudo apt install python3 python3-pip"
-    echo "On macOS: brew install python3"
+# Check if Python is installed
+if ! command -v python3 &> /dev/null; then
+    echo "Error: Python 3 is not installed"
+    echo "Please install Python 3.8+ from your package manager"
     exit 1
 fi
 
+# Check Python version
+python_version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+required_version="3.8"
+
+if [ "$(printf '%s\n' "$required_version" "$python_version" | sort -V | head -n1)" != "$required_version" ]; then
+    echo "Error: Python $python_version found, but Python $required_version+ is required"
+    exit 1
+fi
+
+# Upgrade pip
+echo "Upgrading pip..."
+python3 -m pip install --upgrade pip
+
+# Install requirements
+echo "Installing llama-cpp-python..."
+python3 -m pip install llama-cpp-python==0.2.11
+
+echo "Installing numpy..."
+python3 -m pip install "numpy>=1.21.0"
+
 echo
 echo "Installation complete!"
-echo "You can now test the AI integration by running: node ../Backend/test_ai.js"
+echo
+echo "Next steps:"
+echo "1. Download a GGUF model file (e.g., Llama 3.1)"
+echo "2. Place it in the 'models' folder as 'llama3.1.gguf'"
+echo "3. Run ./start_aera.sh to start the application"
+echo

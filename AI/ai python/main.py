@@ -7,7 +7,7 @@ try:
     from llama_cpp import Llama
     LLAMA_AVAILABLE = True
 except ImportError as e:
-    print(json.dumps({"error": f"llama-cpp-python not installed: {str(e)}"}), file=sys.stderr)
+    print(f"Warning: llama-cpp-python not installed: {str(e)}", file=sys.stderr)
     LLAMA_AVAILABLE = False
     Llama = None
 
@@ -25,17 +25,20 @@ if LLAMA_AVAILABLE:
         model_path = os.path.abspath(model_path)
         
         if not os.path.exists(model_path):
-            print(json.dumps({"error": f"Model file not found: {model_path}"}), file=sys.stderr)
+            print(f"Warning: Model file not found: {model_path}", file=sys.stderr)
+            print("AI will use fallback responses until model is available", file=sys.stderr)
         else:
             print(f"Loading model from: {model_path}", file=sys.stderr)
             model = Llama(
                 model_path=model_path,
-                n_threads=8,
+                n_threads=4,  # Reduced for better compatibility
+                n_ctx=2048,   # Context window
                 verbose=False
             )
             print("Model loaded successfully", file=sys.stderr)
     except Exception as e:
-        print(json.dumps({"error": f"Failed to load model: {str(e)}"}), file=sys.stderr)
+        print(f"Warning: Failed to load model: {str(e)}", file=sys.stderr)
+        print("AI will use fallback responses until model is available", file=sys.stderr)
         model = None
 
 system_instruction = (

@@ -68,7 +68,9 @@ chmod +x install_requirements.sh
 **Note:** The app works with intelligent fallback responses even without the AI model installed.
 
 ### AI Model
-Place your `llama3.1.gguf` model file in `AI/models/` directory.
+1. Download Llama 3.1 model from [Hugging Face](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf) or similar
+2. Place the `.gguf` file in `AI/models/` directory
+3. Rename it to `llama3.1.gguf` or update the path in your AI code
 
 ## 📁 Project Structure
 

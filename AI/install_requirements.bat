@@ -1,40 +1,40 @@
 @echo off
-echo Installing Python requirements for Aera AI...
+echo Installing Python dependencies for Aera AI...
 echo.
 
-REM Try different Python commands
+REM Check if Python is installed
 python --version >nul 2>&1
-if %errorlevel% == 0 (
-    echo Using python command...
-    python -m pip install --upgrade pip
-    python -m pip install -r requirements.txt
-    goto :end
+if errorlevel 1 (
+    echo Error: Python is not installed or not in PATH
+    echo Please install Python 3.8+ from https://python.org
+    pause
+    exit /b 1
 )
 
-python3 --version >nul 2>&1
-if %errorlevel% == 0 (
-    echo Using python3 command...
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -r requirements.txt
-    goto :end
+REM Install pip if not available
+python -m pip --version >nul 2>&1
+if errorlevel 1 (
+    echo Installing pip...
+    python -m ensurepip --upgrade
 )
 
-py --version >nul 2>&1
-if %errorlevel% == 0 (
-    echo Using py command...
-    py -m pip install --upgrade pip
-    py -m pip install -r requirements.txt
-    goto :end
-)
+REM Upgrade pip
+echo Upgrading pip...
+python -m pip install --upgrade pip
 
-echo ERROR: No Python installation found!
-echo Please install Python from https://python.org
-echo Make sure to add Python to your PATH during installation.
-pause
-exit /b 1
+REM Install requirements
+echo Installing llama-cpp-python...
+python -m pip install llama-cpp-python==0.2.11
 
-:end
+echo Installing numpy...
+python -m pip install numpy>=1.21.0
+
 echo.
 echo Installation complete!
-echo You can now test the AI integration by running: node ../Backend/test_ai.js
+echo.
+echo Next steps:
+echo 1. Download a GGUF model file (e.g., Llama 3.1)
+echo 2. Place it in the 'models' folder as 'llama3.1.gguf'
+echo 3. Run start_aera.bat to start the application
+echo.
 pause

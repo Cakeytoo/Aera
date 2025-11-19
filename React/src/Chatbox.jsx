@@ -14,6 +14,7 @@ export default function Chatbox() {
   const [currentSessionId, setCurrentSessionId] = useState(null);
   const [editingTitle, setEditingTitle] = useState(null);
   const [editTitle, setEditTitle] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -30,6 +31,10 @@ export default function Chatbox() {
   }, [messages, showSettings, chatSessions]);
 
   useEffect(() => {
+    // Load dark mode preference
+    const savedDarkMode = localStorage.getItem("darkMode") === "true";
+    setDarkMode(savedDarkMode);
+    
     // Always fetch user info from backend to get latest data
     const token = localStorage.getItem("token");
     if (token) {
@@ -281,6 +286,12 @@ export default function Chatbox() {
     await loadChatMessages(sessionId);
   };
 
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem("darkMode", newDarkMode.toString());
+  };
+
   const updateUserSettings = async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
@@ -308,10 +319,10 @@ export default function Chatbox() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
+    <div className={`flex h-screen overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
       {/* Sidebar */}
       <aside className="hidden md:flex md:flex-shrink-0">
-        <div className="flex flex-col w-64 border-r border-gray-200 bg-white">
+        <div className={`flex flex-col w-64 border-r ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}>
           <div className="flex items-center justify-center p-4 border-b border-gray-200">
             <button 
               className="flex items-center space-x-2 text-gray-800 hover:text-purple-500 transition"
@@ -468,14 +479,23 @@ export default function Chatbox() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">AI Pre-prompt</label>
+                <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>AI Pre-prompt</label>
                 <textarea 
                   value={tempPrePrompt} 
                   onChange={(e) => setTempPrePrompt(e.target.value)}
                   placeholder="Enter a pre-prompt to customize AI responses..."
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${darkMode ? 'border-gray-600 bg-gray-700 text-gray-200 placeholder-gray-400' : 'border-gray-300 bg-white text-gray-800'}`}
                 />
+              </div>
+              <div className="flex items-center justify-between">
+                <label className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Dark Mode</label>
+                <button
+                  onClick={toggleDarkMode}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${darkMode ? 'bg-purple-600' : 'bg-gray-200'}`}
+                >
+                  <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${darkMode ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
               </div>
               <button 
                 onClick={updateUserSettings}
